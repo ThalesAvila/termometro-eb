@@ -1,0 +1,61 @@
+html,
+body {
+  width: 100%;
+  max-width: 1920px;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/assets/fonts/Montserrat-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Montserrat-Bold";
+  font-weight: 400;
+  src: url(/assets/fonts/Montserrat-Bold.ttf);
+}
+
+@font-face {
+  font-family: "Gotham";
+  font-weight: 400;
+  src: url(/assets/fonts/GOTHAM-MEDIUM.OTF);
+}
+
+@font-face {
+  font-family: "Gotham-black";
+  font-weight: 400;
+  src: url(/assets/fonts/GOTHAM-BLACK.OTF);
+}
+
+@font-face {
+  font-family: "Gotham-bold";
+  font-weight: 400;
+  src: url(/assets/fonts/GOTHAM-BOLD.OTF);
+}
+
+@font-face {
+  font-family: "Gotham-medium";
+  font-weight: 400;
+  src: url(/assets/fonts/GOTHAM-MEDIUM.OTF);
+}
+
+@font-face {
+  font-family: "Gotham-book";
+  font-weight: 400;
+  src: url(/assets/fonts/GOTHAM-BOOK.OTF);
+}
