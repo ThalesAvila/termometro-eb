@@ -7,7 +7,7 @@ import { endpoint } from '../config';
 
 function createClient({ headers, initialState }) {
   return new ApolloClient({
-    uri: process.env.NODE_ENV === 'development' ? endpoint : process.env.API_GRAPHQL,
+    uri: 'https://termometro-employer-branding.herokuapp.com/api/graphql',
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors)
