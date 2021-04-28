@@ -25,6 +25,13 @@ a {
 }
 
 @font-face {
+  font-family: "Montserrat-Medium";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/assets/fonts/Montserrat-Medium.ttf);
+}
+
+@font-face {
   font-family: "Montserrat-Bold";
   font-weight: 400;
   src: url(/assets/fonts/Montserrat-Bold.ttf);

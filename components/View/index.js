@@ -8,7 +8,6 @@ const View = styled.div`
   padding: ${(props) => props.padding};
   margin: ${(props) => props.margin};
   background-color: ${(props) => props.bg};
-
   ${({ cookie }) =>
     cookie &&
     css`
@@ -35,6 +34,66 @@ const View = styled.div`
         background-repeat: no-repeat;
       }
     `};
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    ${({ thermometer }) =>
+      thermometer &&
+      css`
+        width: 50vw;
+      `}
+    ${({ about }) =>
+      about &&
+      css`
+        width: 70vw;
+      `}
+      ${({ reportSubText }) =>
+      reportSubText &&
+      css`
+        width: 80vw;
+        display: block;
+        margin: 0 auto;
+      `}
+      ${({ reportText }) =>
+      reportText &&
+      css`
+        width: 85vw;
+        display: block;
+        margin: 2vw auto;
+        :before {
+          display: none;
+        }
+        :after {
+          display: none;
+        }
+      `}
+      ${({ reportBoxText }) =>
+      reportBoxText &&
+      css`
+        width: 85vw;
+        h1 {
+          font-size: 6.3vw;
+        }
+      `}
+      ${({ formInput }) =>
+      formInput &&
+      css`
+        @media (max-width: 768px) {
+          height: auto;
+        }
+      `}
+      ${({ formHeader }) =>
+      formHeader &&
+      css`
+        height: 25vw;
+      `}
+      ${({ headerImg }) =>
+      headerImg &&
+      css`
+        width: 40vw;
+        margin-top: 5vw;
+      `}
+  }
 `;
 
 export default View;

@@ -22,6 +22,11 @@ const Column = styled.div`
     css`
       width: 100%;
     `}
+    @media (max-width: 768px) {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
 `;
 
 export default Column;

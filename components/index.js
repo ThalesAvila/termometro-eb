@@ -8,6 +8,12 @@ import View from "./View";
 import EbCard from "./EbCard";
 import DeepCard from "./DeepCard";
 import Graph from "./Graph";
+import Collapsable from "./Collapsable";
+import DataBox from "./DataBox";
+import Input from "./Input";
+import Timeline from "./Timeline";
+import QuestionForm from "./QuestionForm";
+import DefaultSpan from "./DefaultSpan";
 
 export {
   Button,
@@ -20,4 +26,10 @@ export {
   EbCard,
   DeepCard,
   Graph,
+  Collapsable,
+  DataBox,
+  Input,
+  Timeline,
+  QuestionForm,
+  DefaultSpan,
 };

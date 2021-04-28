@@ -84,6 +84,26 @@ const Waves = styled.div`
       }
     }
   `}
+
+  ${(props) =>
+    props.green &&
+    css`
+      position: relative;
+      width:100%;
+      height: 37vw;
+      :before {
+        content: "";
+        z-index:-1;
+        left: 0;
+        position: absolute;
+        background: url("./assets/img/wave4.png");
+        background-size: contain;
+        width: 100%;
+        height: 37vw;
+        background-repeat: no-repeat;
+      }
+    }
+  `}
 `;
 
 export default Waves;

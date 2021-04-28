@@ -7,6 +7,9 @@ export const EbCardGroup = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  @media (max-width: 768px) {
+    margin-top: 0;
+  }
 `;
 
 export const EbCard = styled.div`
@@ -19,11 +22,22 @@ export const EbCard = styled.div`
   font-size: 1.25vw;
   color: #f55d3e;
   width: 14.5vw;
+  @media (max-width: 768px) {
+    width: 27.5vw;
+    margin-top: 8vw;
+    font-size: 2vw; 
+  }
+  
+}
 `;
 
 export const EbImg = styled.div`
   width: 5.7vw;
   height: 5.7vw;
+  @media (max-width: 768px) {
+    width: 13.7vw;
+    height: auto;
+  }
 `;
 
 export const EbTitle = styled.div`

@@ -5,6 +5,11 @@ export const DeepCardGroup = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  width: 100%;
+  @media (max-width: 768px) {
+    justify-content: space-between;
+    flex-direction: column;
+  }
 `;
 
 export const DeepCard = styled.div`
@@ -22,6 +27,14 @@ export const DeepCard = styled.div`
   box-shadow: -5px 9px 17px 0px rgba(0, 0, 0, 0.21);
   -webkit-box-shadow: -5px 9px 17px 0px rgba(0, 0, 0, 0.21);
   -moz-box-shadow: -5px 9px 17px 0px rgba(0, 0, 0, 0.21);
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    width: 35vw;
+    height: 30vw;
+    font-size: 2.3vw;
+    margin: 5vw 0;
+  }
 `;
 
 export const DeepImg = styled.div`
@@ -36,4 +49,8 @@ export const DeepTitle = styled.div`
   font-family: Montserrat-Bold;
   height: 6vw;
   margin-bottom: 2vw;
+  @media (max-width: 768px) {
+    font-size: 2.3vw;
+    height: auto;
+  }
 `;
