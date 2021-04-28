@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import { ApolloClient, ApolloLink, InMemoryCache } from '@apollo/client';
 import { onError } from '@apollo/link-error';
 import { getDataFromTree } from '@apollo/react-ssr';
