@@ -8,6 +8,7 @@ import { endpoint } from '../config';
 
 function createClient({ headers, initialState }) {
   return new ApolloClient({
+    uri: process.env.NODE_ENV === 'development' ? endpoint : process.env.API_GRAPHQL,
     link: ApolloLink.from([
       onError(({ graphQLErrors, networkError }) => {
         if (graphQLErrors)

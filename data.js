@@ -554,10 +554,6 @@ export const questionData = {
           optionName: "Comercial",
         },
         {
-          valueName: "Comercial",
-          optionName: "Comercial",
-        },
-        {
           valueName: "Outros",
           optionName: "Outros",
         },
