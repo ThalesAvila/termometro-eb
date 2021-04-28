@@ -10,7 +10,7 @@ import {
 } from "@/components/index";
 import Image from "next/image";
 
-import { CollapsableData } from "../../data";
+// import { CollapsableData } from "../../data";
 
 export default function Report() {
   return (
@@ -85,7 +85,7 @@ export default function Report() {
             />
           </View>
         </Column>
-        <DataBox
+        {/* <DataBox
           collapsableData={CollapsableData}
           pdf
           title1="presença da marca empregadora "
@@ -117,7 +117,7 @@ export default function Report() {
           graphValue="50"
           color="green"
           paragraph="Baseado nas suas respostas, as suas estratégias e ações de Employer Branding ainda estão no modo sobrevivência. O trabalho de marca empregadoda ainda esta começando em muitas empresas, entao veja isso como uma oportunidade para desenvolver sua estratéfia! Dê uma olhada nos resultados abaixo e entenda em que você pode direcionar seus esforços. "
-        />
+        /> */}
       </Container>
     </>
   );
