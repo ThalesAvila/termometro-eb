@@ -38,7 +38,7 @@ export const DeepData = [
 export const dynamicReport = [
   {
     survival: "Você está no modo sobrevivência",
-    optimization: "Voce está no modo otimização",
+    optimization: "Você está no modo otimização",
     prosperity: "Você está no modo prosperidade",
   },
   {
