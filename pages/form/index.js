@@ -47,7 +47,7 @@ const Step = ({ inputs, register, errors }) => (
 );
 
 export default function Form() {
-  const [activeTab, setActiveTab] = useState(4);
+  const [activeTab, setActiveTab] = useState(0);
   const router = useRouter();
   const { updateLeadInfo } = useAppContext();
   const [createLead, { loading }] = useMutation(CREATE_LEAD_MUTATION, {
