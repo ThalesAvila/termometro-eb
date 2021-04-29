@@ -27,17 +27,6 @@ export const Collapses = styled(Collapse)`
     border: solid 0.25vw #f55d3e;
     border-radius: 5px;
     background-color: #fff;
-  }
-  .rc-collapse-content-box {
-    color: #000;
-    background-color: #ebebeb;
-    margin: 0;
-    font-size: 1vw;
-    border-radius: 8px;
-    padding: 1.3vw 1.8vw;
-    text-align: justify;
-  }
-  .rc-collapse-content-active {
     :before {
       content: "";
       width: 2.1vw;
@@ -48,8 +37,32 @@ export const Collapses = styled(Collapse)`
       background: url("./assets/img/arrow.png");
       background-size: contain;
       background-repeat: no-repeat;
-    }
+    }    
   }
+  .rc-collapse-content-box {
+    color: #000;
+    background-color: #ebebeb;
+    margin: 0;
+    font-size: 1vw;
+    border-radius: 8px;
+    padding: 1.3vw 1.8vw;
+    text-align: justify;
+    
+  }
+  /* .rc-collapse-content-active {
+    :before {
+      content: "";
+      width: 2.1vw;
+      height: 2.6vw;
+      top: 1.5vw;
+      right: 0.5vw;
+      position: absolute;
+      background: url("./assets/img/arrow.png");
+      transform: rotate(180deg);
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  } */
 
   @media (max-width: 768px) {
     margin-top: 5vw;

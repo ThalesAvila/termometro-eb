@@ -19,7 +19,6 @@ export default function Report() {
   
   useEffect(() => {
     setLeadReport(calculateScore(leadInfo));
-    console.log(leadReport);
   }, [leadInfo]);
 
   const employerBrandResponses = useMemo(() => {
