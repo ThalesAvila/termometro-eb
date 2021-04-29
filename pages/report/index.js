@@ -158,7 +158,7 @@ export default function Report() {
         <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
           collapsableData={talentJourneyResponses}
-          title1="jornada do talento "
+          title1="jornada do talento "ywnrds
           graphValue={leadReport.talentJourney?.value} 
           color="optimization"
           paragraph={dynamicReport[5][leadReport?.general?.stage]}

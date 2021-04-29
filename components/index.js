@@ -14,6 +14,7 @@ import Input from "./Input";
 import Timeline from "./Timeline";
 import QuestionForm from "./QuestionForm";
 import DefaultSpan from "./DefaultSpan";
+import Loading from "./Loading";
 
 export {
   Button,
@@ -32,4 +33,5 @@ export {
   Timeline,
   QuestionForm,
   DefaultSpan,
+  Loading,
 };

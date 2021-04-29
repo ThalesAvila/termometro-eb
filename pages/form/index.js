@@ -6,6 +6,7 @@ import {
   QuestionForm,
   Button,
   DefaultSpan,
+  Loading,
 } from "@/components/index";
 import { useForm } from "react-hook-form";
 import { questionData } from "../../data";
@@ -46,7 +47,7 @@ const Step = ({ inputs, register, errors }) => (
 );
 
 export default function Form() {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(4);
   const router = useRouter();
   const { leadInfo, updateLeadInfo } = useAppContext();
   const [createLead, { loading }] = useMutation(CREATE_LEAD_MUTATION);
@@ -155,7 +156,7 @@ export default function Form() {
               </Button>
             )}
             {activeTab == 4 ? (
-              <Input type="submit" />
+              <Input type="submit" inputValue="Enviar" /> 
             ) : (
               <Button type="form" onClick={() => handleNextPage(activeTab)}>
                 Próximo
