@@ -79,7 +79,7 @@ export default function Report() {
               color="white"
               title1="SEU TERMÔMETRO DE "
               title2="EMPLOYER BRANDING "
-              title3="ESTA AQUI!"
+              title3="ESTÁ AQUI!"
             />
           </View>
         </Container>
@@ -93,7 +93,7 @@ export default function Report() {
               title1={dynamicReport[0][leadReport?.general?.stage]}
             />
             <View reportSubText width="24vw">
-              <Paragraph highlight>
+              <Paragraph highlight textAlign="start">
                 {dynamicReport[1][leadReport?.general?.stage]}
               </Paragraph>
             </View>
@@ -117,7 +117,7 @@ export default function Report() {
           </View>
         </Column>
         <Column full>
-          <View flex around width="100%" margin="4vw 0 0 0">
+          <View flex around width="100%" margin="4vw 0 6vw 0">
             <Graph
               value={leadReport.employerBrand?.value}
               color="purple"
@@ -147,6 +147,7 @@ export default function Report() {
           color="purple"
           paragraph={dynamicReport[3][leadReport?.general?.stage]}
         />
+        <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
           collapsableData={internalExternalEngagementResponses}
           title1="engajamento interno e externo "
@@ -154,6 +155,7 @@ export default function Report() {
           color="survival"
           paragraph={dynamicReport[4][leadReport?.general?.stage]}
         />
+        <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
           collapsableData={talentJourneyResponses}
           title1="jornada do talento "
@@ -161,6 +163,7 @@ export default function Report() {
           color="optimization"
           paragraph={dynamicReport[5][leadReport?.general?.stage]}
         />
+        <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
           collapsableData={structureMetricsResponses}
           title1="estrutura do time de métrica"
