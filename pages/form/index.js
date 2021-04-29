@@ -16,6 +16,7 @@ import Image from "next/image";
 import { useAppContext } from "@/components/AppContext";
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
+import NProgress from 'nprogress';
 
 const CREATE_LEAD_MUTATION = gql`
   mutation CREATE_LEAD_MUTATION($data: LeadCreateInput!) {
@@ -50,7 +51,9 @@ export default function Form() {
   const [activeTab, setActiveTab] = useState(4);
   const router = useRouter();
   const { leadInfo, updateLeadInfo } = useAppContext();
-  const [createLead, { loading }] = useMutation(CREATE_LEAD_MUTATION);
+  const [createLead, { loading }] = useMutation(CREATE_LEAD_MUTATION, {
+    onCompleted: () => { NProgress.done() }
+  });
 
   const {
     register,
@@ -69,7 +72,7 @@ export default function Form() {
       }
       return pair;
     }));
-
+    NProgress.start()
     const res = await createLead({
       variables: {
         data: parsedLeadInfo
@@ -108,7 +111,7 @@ export default function Form() {
       <Container type="form">
         <Timeline activeTab={activeTab} />
 
-        <QuestionForm onSubmit={handleSubmit(onSubmit)} loading={loading}>
+        <QuestionForm onSubmit={handleSubmit(onSubmit)}>
           <View padding="1vw 5vw">
             {activeTab === 0 && (
               <Step

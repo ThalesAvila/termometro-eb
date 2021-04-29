@@ -3,6 +3,14 @@ import "rc-collapse/assets/index.css";
 import { AppWrapper } from '../components/AppContext';
 import { ApolloProvider } from '@apollo/client';
 import withData from "utils/withData";
+import NProgress from 'nprogress';
+import Router from 'next/router';
+
+import '../styles/nprogress.css'; 
+
+Router.events.on('routeChangeStart', () => NProgress.start());
+Router.events.on('routeChangeComplete', () => NProgress.done());
+Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps, apollo }) {
   return (
