@@ -103,7 +103,7 @@ export default function Report() {
         <Column big padding="0 0 0 8vw">
           <View width="35vw" height="18.5vw">
             <Image
-              src="/assets/img/termometro.png"
+              src={`/assets/img/${leadReport?.general?.stage}.png`}
               width={1080}
               height={684}
               layout="responsive"

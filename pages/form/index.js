@@ -69,8 +69,6 @@ export default function Form() {
       return pair;
     }));
 
-    console.log(parsedLeadInfo);
-
     const res = await createLead({
       variables: {
         data: parsedLeadInfo

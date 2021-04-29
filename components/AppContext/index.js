@@ -112,7 +112,7 @@ const sample3 = {
 }
 
 export function AppWrapper({ children }) {
-  const [leadInfo, updateLeadInfo] = useState({});
+  const [leadInfo, updateLeadInfo] = useState(sample3);
   const [leadReport, setLeadReport] = useState({}); 
 
   return (
