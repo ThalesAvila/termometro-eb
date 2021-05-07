@@ -185,12 +185,12 @@ export default function Report() {
               title1="Fale com o "
               title2="especialista:"
             /> */}
-            {/* <Button
+            <Button
               onClick={() => `${window.open("https://materiais.matchboxbrasil.com/especialista", "_blank")}`}
-              type="small"
+              
             >
               Fale com especialista
-            </Button> */}
+            </Button>
           </Column>
         </Container>
         <View bg="#4d339d" padding="0 0 15vw 0" />
