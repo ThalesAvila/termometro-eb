@@ -175,25 +175,13 @@ export default function Report() {
         />
       </Container>
       <View flex around width="100%" margin="6vw 0 0 0" />
-      <Waves purple />
-      <View bg="#4d339d">
-        <Container>
-          <Column padding="0 0 0 0">
-            {/* <Title
-              type="about"
-              color="optimization"
-              title1="Fale com o "
-              title2="especialista:"
-            /> */}
-            <Button
-              onClick={() => `${window.open("https://materiais.matchboxbrasil.com/especialista", "_blank")}`}
-              
-            >
-              Fale com especialista
-            </Button>
-          </Column>
-        </Container>
-        <View bg="#4d339d" padding="0 0 15vw 0" />
+      {/* <Waves purple /> */}
+      <View padding="0 0 2vw 0" style={{ display: 'flex', justifyContent:'center' }}>
+        <Button
+          onClick={() => `${window.open("https://materiais.matchboxbrasil.com/especialista", "_blank")}`}
+        >
+          Fale com especialista
+        </Button>
       </View>
     </>
   );
