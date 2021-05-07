@@ -7,6 +7,7 @@ import {
   Paragraph,
   View,
   DataBox,
+  Button
 } from "@/components/index";
 import Image from "next/image";
 import { useEffect, useMemo } from 'react';
@@ -68,12 +69,13 @@ export default function Report() {
   return (
     <>
       <Waves 
+        small
         salmon={leadReport?.general?.stage === 'survival'}
         yellow={leadReport?.general?.stage === 'optimization'}
         green={leadReport?.general?.stage === 'prosperity'}
       >
         <Container type="report">
-          <View width="41vw" padding="9vw 0 0 0">
+          <View width="41vw" padding="3vw 0 0 0">
             <Title
               type="report-hero"
               color="white"
@@ -172,6 +174,27 @@ export default function Report() {
           paragraph={dynamicReport[6][leadReport?.general?.stage]}
         />
       </Container>
+      <View flex around width="100%" margin="6vw 0 0 0" />
+      <Waves purple />
+      <View bg="#4d339d">
+        <Container>
+          <Column padding="0 0 0 0">
+            {/* <Title
+              type="about"
+              color="optimization"
+              title1="Fale com o "
+              title2="especialista:"
+            /> */}
+            {/* <Button
+              onClick={() => `${window.open("https://materiais.matchboxbrasil.com/especialista", "_blank")}`}
+              type="small"
+            >
+              Fale com especialista
+            </Button> */}
+          </Column>
+        </Container>
+        <View bg="#4d339d" padding="0 0 15vw 0" />
+      </View>
     </>
   );
 }

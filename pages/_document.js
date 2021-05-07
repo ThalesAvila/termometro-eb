@@ -34,9 +34,17 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           <link rel="shortcut icon" href="https://spark.matchboxbrasil.com/wp-content/uploads/2020/11/icon-faisca-min.png"/>
-          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></link>
+          <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></link> 
         </Head>
-        <body>
+        <body> 
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-QMTDQRGYDR"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)}
+          gtag('js', new Date());
+
+          gtag('config', 'G-QMTDQRGYDR');
+        </script>
           <Main />
           <NextScript />
         </body>

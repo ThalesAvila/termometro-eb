@@ -6,7 +6,7 @@ const Waves = styled.div`
     css`
       position: relative;
       width:100%;
-      height: 39vw;
+      height: ${props.small ? `29vw` : `39vw`};
       :before {
         content: "";
         top: ${props.small ? `-10vw` : 0};
@@ -21,7 +21,7 @@ const Waves = styled.div`
       }
       :after{
         content: "";
-        top: 9vw;
+        top: ${props.small ? `1vw` : `9vw`};
         z-index: -2;
         right: 2vw;
         position: absolute;
@@ -70,9 +70,10 @@ const Waves = styled.div`
     css`
       position: relative;
       width:100%;
-      height: 37vw;
+      height: ${props.small ? `29vw` : `39vw`};;
       :before {
         content: "";
+        top: ${props.small ? `-10vw` : 0};
         z-index:-1;
         left: 0;
         position: absolute;
@@ -82,6 +83,19 @@ const Waves = styled.div`
         height: 37vw;
         background-repeat: no-repeat;
       }
+      :after{
+        content: "";
+        top: ${props.small ? `1vw` : `9vw`};
+        z-index: -2;
+        right: 2vw;
+        position: absolute;
+        background: url("./assets/img/cookie.png");
+        background-size: contain;
+        width: 15vw;
+        height: 15vw;
+        background-repeat: no-repeat;
+        transform: rotate(270deg);
+      }
     }
   `}
 
@@ -90,9 +104,10 @@ const Waves = styled.div`
     css`
       position: relative;
       width:100%;
-      height: 37vw;
+      height: ${props.small ? `29vw` : `39vw`};
       :before {
         content: "";
+        top: ${props.small ? `-10vw` : 0};
         z-index:-1;
         left: 0;
         position: absolute;
@@ -101,6 +116,19 @@ const Waves = styled.div`
         width: 100%;
         height: 37vw;
         background-repeat: no-repeat;
+      }
+      :after{
+        content: "";
+        top: ${props.small ? `1vw` : `9vw`};
+        z-index: -2;
+        right: 2vw;
+        position: absolute;
+        background: url("./assets/img/cookie.png");
+        background-size: contain;
+        width: 15vw;
+        height: 15vw;
+        background-repeat: no-repeat;
+        transform: rotate(270deg);
       }
     }
   `}
