@@ -65,7 +65,7 @@ export default function DataBox({
               <Graph value={graphValue} color={color} />
             </View>
             <View padding="0vw 5vw 0vw 0vw">
-              <Paragraph>{paragraph}</Paragraph>
+              <Paragraph textAlign="start">{paragraph}</Paragraph>
             </View>
           </Column>
           <Column small>

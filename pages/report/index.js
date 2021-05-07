@@ -111,7 +111,7 @@ export default function Report() {
         </Column>
         <Column full>
           <View reportText width="60vw" margin="8vw 0" cookie>
-            <Paragraph>
+            <Paragraph textAlign="start">
               {dynamicReport[2][leadReport?.general?.stage]}
             </Paragraph>
           </View>
@@ -141,7 +141,7 @@ export default function Report() {
         </Column>
         <DataBox
           collapsableData={employerBrandResponses}
-          title1="presença da marca empregadora "
+          title1="Presença da marca empregadora "
           title2=""
           graphValue={leadReport.employerBrand?.value}
           color="purple"
@@ -150,7 +150,7 @@ export default function Report() {
         <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
           collapsableData={internalExternalEngagementResponses}
-          title1="engajamento interno e externo "
+          title1="Engajamento interno e externo "
           graphValue={leadReport.internalExternalEngagement?.value}
           color="survival"
           paragraph={dynamicReport[4][leadReport?.general?.stage]}
@@ -158,7 +158,7 @@ export default function Report() {
         <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
           collapsableData={talentJourneyResponses}
-          title1="jornada do talento "ywnrds
+          title1="Jornada do talento "ywnrds
           graphValue={leadReport.talentJourney?.value} 
           color="optimization"
           paragraph={dynamicReport[5][leadReport?.general?.stage]}
@@ -166,7 +166,7 @@ export default function Report() {
         <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
           collapsableData={structureMetricsResponses}
-          title1="estrutura do time de métrica"
+          title1="Estrutura do time de métrica"
           graphValue={leadReport.structureMetrics?.value} 
           color="prosperity"
           paragraph={dynamicReport[6][leadReport?.general?.stage]}

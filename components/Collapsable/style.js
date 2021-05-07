@@ -46,7 +46,7 @@ export const Collapses = styled(Collapse)`
     font-size: 1vw;
     border-radius: 8px;
     padding: 1.3vw 1.8vw;
-    text-align: justify;
+    text-align: start;
     
   }
   /* .rc-collapse-content-active {

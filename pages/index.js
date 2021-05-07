@@ -86,7 +86,7 @@ export default function App() {
           <EbCard data={EbData} />
         </Column>
         <Column margin="5vw 0" full>
-          <Paragraph center highlight>
+          <Paragraph textAlign="center" highlight>
             A Matchbox utilizou exemplos reais de empresas que possuem um
             trabalho extenso de Marca Empregadora e Marketing de Recrutamento
             para a construção deste Termômetro de Employer Branding.

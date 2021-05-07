@@ -93,7 +93,7 @@ export const dynamicReportResponses = {
   employerBrand: [
     {
       title: 'SITE DE CARREIRA',
-      text: 'Esse é um dos passos mais básicos para estruturar, como o seu candidato vai te conhecer se você não divulga uma empresa como marca empregadora se ele não encontra suas vagas no site'
+      text: 'Esse é um dos passos mais básicos para estruturar, como o seu candidato vai te conhecer se você não divulga uma empresa como marca empregadora se ele não encontra suas vagas no site.'
     },
     {
       title: 'ATUALIZAÇÃO DE SITE',

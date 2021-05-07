@@ -9,7 +9,7 @@ const Waves = styled.div`
       height: 39vw;
       :before {
         content: "";
-        top: 0;
+        top: ${props.small ? `-10vw` : 0};
         left: 0;
         position: absolute;
         background: url("./assets/img/wave.png");
