@@ -4,7 +4,7 @@ import withApollo from 'next-with-apollo';
 
 function createClient({ headers, initialState }) {
   return new ApolloClient({
-    uri: 'https://termometro-employer-branding.herokuapp.com/api/graphql',
+    uri: 'https://termometro.staging.matchbox.digital/api/graphql',
     cache: new InMemoryCache({
       typePolicies: {
         Query: {
