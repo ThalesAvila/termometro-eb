@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const Title = styled.h1`
+export const Title = styled.h2`
   padding-left: ${({ hero }) => (hero ? "1vw" : 0)};
   line-height: ${({ hero }) => (hero ? 0.86 : 1)};
   color: ${({ color }) => {
