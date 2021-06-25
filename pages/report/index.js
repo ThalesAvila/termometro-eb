@@ -114,6 +114,8 @@ export default function Report() {
                 /assets/img/${leadReport?.general?.stage}.png 1.5x,
                 /assets/img/${leadReport?.general?.stage}.png 2x,
                 /assets/img/${leadReport?.general?.stage}.png 2.5x,
+                /assets/img/${leadReport?.general?.stage}.png 2.8x,
+                /assets/img/${leadReport?.general?.stage}.png 3x,
               `}
               layout="responsive"
             />
