@@ -54,7 +54,7 @@ const GET_LEAD_QUERY = gql`
   }
 `;
   
-export default function Report() {
+export default function Report(props) {
   const [leadReport, setLeadReport] = useState(undefined)
 
   const employerBrandResponses = useMemo(() => {
