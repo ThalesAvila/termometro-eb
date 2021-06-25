@@ -1,5 +1,4 @@
 import * as S from "./style";
-import Image from "next/image";
 import { Button } from "@/components/index";
 export default function DeepCard({ data }) {
   return (
@@ -8,7 +7,14 @@ export default function DeepCard({ data }) {
         return (
           <S.DeepCard key={card}>
             <S.DeepImg>
-              <Image src={el.img} width={163} height={167} />
+              <img
+                src={el.img}
+                srcSet={`
+                  ${el.img} 0.5x,
+                  ${el.img} 0.75x,
+                  ${el.img} 1.5x,
+                `}
+              />
             </S.DeepImg>
             <S.DeepTitle>{el.title}</S.DeepTitle>
             <Button

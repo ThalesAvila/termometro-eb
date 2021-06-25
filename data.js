@@ -210,6 +210,16 @@ export const questionData = {
       },
     },
     {
+      type: "text",
+      labelValue: "Sobrenome",
+      inputName: "lastname",
+      id: "lastname",
+      validateName: "lastname",
+      validate: {
+        required: true,
+      },
+    },
+    {
       type: "email",
       labelValue: "E-mail",
       inputName: "email",
@@ -240,14 +250,44 @@ export const questionData = {
       },
     },
     {
-      type: "text",
-      labelValue: "Cargo",
+      type: "select",
+      labelValue: "Qual o seu cargo atual?",
       inputName: "role",
       id: "role",
       validateName: "role",
+      options: [
+        {
+          valueName: "Estagiário ou Assistente de RH",
+          optionName: "Estagiário ou Assistente de RH",
+        },
+        {
+          valueName: "Analista ou Coordenador de RH",
+          optionName: "Analista ou Coordenador de RH",
+        },
+        {
+          valueName: "Gerente de RH",
+          optionName: "Gerente de RH",
+        },
+        {
+          valueName: "Diretor de RH",
+          optionName: "Diretor de RH",
+        },
+        {
+          valueName: "Employer Branding ou outros",
+          optionName: "Employer Branding ou outros",
+        },
+        {
+          valueName: "Employer Branding ou outros",
+          optionName: "Employer Branding ou outros",
+        },
+        {
+          valueName: "Não trabalho com RH",
+          optionName: "Não trabalho com RH",
+        },
+      ],
       validate: {
         required: true,
-      },
+      }
     },
     {
       type: "select",
@@ -562,6 +602,30 @@ export const questionData = {
         required: true,
       },
     },
+    {
+      type: "select",
+      labelValue: "Qual a melhor forma de falar com você?",
+      inputName: "contactInformation",
+      id: "contactInformation",
+      validateName: "contactInformation",
+      options: [
+        {
+          valueName: "E-mail",
+          optionName: "E-mail",
+        },
+        {
+          valueName: "Telefone",
+          optionName: "Telefone",
+        },
+        {
+          valueName: "WhatsApp",
+          optionName: "WhatsApp",
+        }
+      ],
+      validate: {
+        required: true,
+      },
+    },
   ],
   employerBrand: [
     {
@@ -834,3 +898,38 @@ export const questionData = {
     },
   ],
 };
+
+export const HubspotFormData = [
+  {
+    name: 'firstname',
+    formPropValue: 'name'
+  },
+  {
+    name: 'lastname',
+    formPropValue: 'lastname'
+  },
+  {
+    name: 'email',
+    formPropValue: 'email'
+  },
+  {
+    name: 'phone',
+    formPropValue: 'phone'
+  },
+  {
+    name: 'company',
+    formPropValue: 'company'
+  },
+  {
+    name: 'qual_o_seu_cargo_atual_',
+    formPropValue: 'role'
+  },
+  {
+    name: 'qual_o_tamanho_da_sua_organizacao_',
+    formPropValue: 'companySize'
+  },
+  {
+    name: 'preferencia_de_contato',
+    formPropValue: 'contactInformation'
+  },
+]

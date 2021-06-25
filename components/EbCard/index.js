@@ -1,5 +1,4 @@
 import * as S from "./style";
-import Image from "next/image";
 
 export default function EbCard({ data }) {
   return (
@@ -8,7 +7,12 @@ export default function EbCard({ data }) {
         return (
           <S.EbCard key={card}>
             <S.EbImg>
-              <Image src={el.img} width={110} height={110} />
+              <img src={el.img}
+                srcSet={`
+                ${el.img} 0.5x,
+                ${el.img} 0.75x,
+                ${el.img} 1.5x,
+              `} />
             </S.EbImg>
             <S.EbTitle>{el.title}</S.EbTitle>
           </S.EbCard>

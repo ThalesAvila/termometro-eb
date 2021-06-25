@@ -1,7 +1,6 @@
 import { questionData } from "../data";
 
 export const calculateScore = (leadInfo) => {
-    console.log({ leadInfo });
     const score = {
       general: {
         rawValue: 0,

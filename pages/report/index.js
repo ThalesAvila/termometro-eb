@@ -1,3 +1,6 @@
+import { useEffect, useMemo } from 'react';
+import { useRouter } from "next/router";
+
 import {
   Graph,
   Title,
@@ -9,13 +12,13 @@ import {
   DataBox,
   Button
 } from "@/components/index";
-import Image from "next/image";
-import { useEffect, useMemo } from 'react';
 import { calculateScore } from '../../utils';
 import { dynamicReport, dynamicReportResponses } from "../../data";
 import { useAppContext } from '@/components/AppContext';
 
 export default function Report() {
+  const router = useRouter()
+  const { id } = router.query
   const { leadInfo, leadReport, setLeadReport } = useAppContext();
   
   useEffect(() => {
@@ -103,10 +106,15 @@ export default function Report() {
         </Column>
         <Column big padding="0 0 0 8vw">
           <View width="35vw" height="18.5vw">
-            <Image
+            <img
               src={`/assets/img/${leadReport?.general?.stage}.png`}
-              width={1080}
-              height={684}
+              srcSet={`
+                /assets/img/${leadReport?.general?.stage}.png 0.5x,
+                /assets/img/${leadReport?.general?.stage}.png 0.75x,
+                /assets/img/${leadReport?.general?.stage}.png 1.5x,
+                /assets/img/${leadReport?.general?.stage}.png 2x,
+                /assets/img/${leadReport?.general?.stage}.png 2.5x,
+              `}
               layout="responsive"
             />
           </View>
@@ -178,9 +186,20 @@ export default function Report() {
       {/* <Waves purple /> */}
       <View padding="0 0 2vw 0" style={{ display: 'flex', justifyContent:'center' }}>
         <Button
-          onClick={() => `${window.open("https://materiais.matchboxbrasil.com/especialista", "_blank")}`}
+          as="a"
+          href="https://materiais.matchboxbrasil.com/especialista"
+          target="_blank"
         >
           Fale com especialista
+        </Button>
+        <Button
+          style={{ marginLeft: 16 }}
+          as="a"
+          target="_blank"
+          download="report.pdf"
+          href={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/pdf?id=${id}`}
+        >
+          Gerar PDF
         </Button>
       </View>
     </>

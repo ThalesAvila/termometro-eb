@@ -1,3 +1,12 @@
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import { useMutation } from '@apollo/client';
+import { useForm } from "react-hook-form";
+import gql from 'graphql-tag';
+import NProgress from 'nprogress';
+
+import { sendForm } from "@/services/hubspot";
+
 import {
   Container,
   Input,
@@ -7,21 +16,24 @@ import {
   Button,
   DefaultSpan,
 } from "@/components/index";
-import { useForm } from "react-hook-form";
-import { questionData } from "../../data";
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import Image from "next/image";
+import { HubspotFormData, questionData } from "../../data";
 import { useAppContext } from "@/components/AppContext";
-import gql from 'graphql-tag';
-import { useMutation } from '@apollo/client';
-import NProgress from 'nprogress';
+import parseLeadInfo from "utils/parseLeadInfo";
 
 const CREATE_LEAD_MUTATION = gql`
   mutation CREATE_LEAD_MUTATION($data: LeadCreateInput!) {
     createLead(data: $data) { 
       name
+      id
     }
+  }
+`;
+
+const UPDATE_LEAD_MUTATION = gql`
+  mutation UPDATE_LEAD_MUTATION($id: ID!, $data: LeadUpdateInput) {
+    updateLead(id: $id, data: $data) { 
+      id
+    } 
   }
 `;
 
@@ -47,10 +59,15 @@ const Step = ({ inputs, register, errors }) => (
 );
 
 export default function Form() {
+  const [leadId, setLeadId] = useState(0);  
   const [activeTab, setActiveTab] = useState(0);
   const router = useRouter();
   const { updateLeadInfo } = useAppContext();
-  const [createLead, { loading }] = useMutation(CREATE_LEAD_MUTATION, {
+
+  const [createLead, { loading: loadingCreate }] = useMutation(CREATE_LEAD_MUTATION, {
+    onCompleted: () => { NProgress.done() }
+  });
+  const [updateLead, { loading: loadingUpdate }] = useMutation(UPDATE_LEAD_MUTATION, {
     onCompleted: () => { NProgress.done() }
   });
 
@@ -63,21 +80,71 @@ export default function Form() {
 
   const onSubmit = async (data) => {
     await updateLeadInfo(data);
-    const parsedLeadInfo = await Object.fromEntries(Object.entries(data).map(pair => {
-      if (pair[1] === 'true') {
-        pair[1] = true;
-      } else if (pair[1] === 'false') {
-        pair[1] = false;
+    NProgress.start()    
+    const parsedLeadInfo = parseLeadInfo(data)
+
+    delete parsedLeadInfo.contactInformation
+    delete parsedLeadInfo.lastname
+
+    if (activeTab === 0) {
+      const res = await createLead({
+        variables: {
+          data: parsedLeadInfo
+        }
+      });
+
+
+      setLeadId(res.data.createLead.id)
+
+      const fields = HubspotFormData.map(field => {
+        const value = data[field.formPropValue]
+
+        // Hubspot e-mail validation doesn't accept emails that begin
+        // with capital letter, therefore we need to parse to lowercase
+        const objField = {
+          name: field.name,
+          value: field.name === 'email' ? typeof value === 'string' && value.toLowerCase() : value
+        }
+
+        return objField
+      })
+
+      try {
+        await sendForm({
+          fields,
+          portalId: '8797988', // correspondent id from hubspot get forms
+          formId: '9dd6cbd6-1fa7-4703-ba49-2881e3e2980b' // correspondent id from hubspot get forms
+        })
+      } catch (err) {
+        console.log(err)
       }
-      return pair;
-    }));
-    NProgress.start()
-    const res = await createLead({
-      variables: {
-        data: parsedLeadInfo
-      }
-    });
-    router.push("report");
+    }
+
+    if (activeTab > 0 && activeTab < 4) {
+      await updateLead({
+        variables: {
+          id: leadId,
+          data: parsedLeadInfo
+        }
+      });
+    }
+
+    if (activeTab === 4){
+      await updateLead({
+        variables: {
+          id: leadId,
+          data: parsedLeadInfo
+        }
+      });
+
+      router.push({
+        pathname: 'report',
+        query: { id: leadId }
+      });
+      return
+    }
+
+    handleNextPage(activeTab)
   };
 
   const handleNextPage = (activeTab) => {
@@ -98,7 +165,7 @@ export default function Form() {
       <View formHeader bg="#483A96" height="12vw">
         <Container>
           <View headerImg width="15vw" height="2vw" padding="2vw 0 0 1.5vw">
-            <Image
+            <img
               src="/assets/img/logo-white.png"
               width={253}
               height={48}
@@ -157,13 +224,12 @@ export default function Form() {
                 Voltar
               </Button>
             )}
-            {activeTab == 4 ? (
-              <Input type="submit" inputValue="Enviar" disabled={loading} /> 
-            ) : (
-              <Button type="form" disabled={loading} onClick={() => handleNextPage(activeTab)}>
-                Próximo
-              </Button>
-            )}
+            <Button
+              type="submit"
+              disabled={loadingCreate || loadingUpdate}
+              onClick={() => handleSubmit(onSubmit)}>
+                {activeTab !== 4 ? "Próximo" : "Enviar"}
+            </Button>
           </View>
         </QuestionForm>
       </Container>

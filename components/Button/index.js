@@ -2,6 +2,9 @@ import styled, { css } from "styled-components";
 
 const Button = styled.button`
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ${({ type }) => {
     switch (type) {
       case "form":
@@ -9,6 +12,29 @@ const Button = styled.button`
           width: 6vw;
           height: 2vw;
           background: #f55d3e;
+          font-weight: 400;
+          font-size: 1vw;
+          line-height: 1vw;
+          color: white;
+          border: 0 none;
+          border-radius: 25px;
+          cursor: pointer;
+          padding: 10px;
+          margin: 0 0 0 1vw;
+          font-family: Montserrat-Bold;
+          @media (max-width: 768px) {
+            display: block;
+            margin: 0 auto;
+            width: 30vw;
+            height: 5vw;
+            font-size: 2.3vw;
+          }
+        `;
+      case "submit":
+        return css`
+          width: 6vw;
+          height: 2vw;
+          background: #463a8f;
           font-weight: 400;
           font-size: 1vw;
           line-height: 1vw;

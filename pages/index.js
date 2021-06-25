@@ -9,8 +9,6 @@ import {
   EbCard,
   DeepCard,
 } from "@/components/index";
-import Image from "next/image";
-import Head from "next/head";
 import { EbData, DeepData } from "../data";
 import { useRouter } from "next/router";
 
@@ -36,10 +34,13 @@ export default function App() {
       <Waves yellow>
         <Container>
           <View width="13vw" height="2.5vw" padding="3.5vw 0 6.3vw 0">
-            <Image
+            <img
               src="/assets/img/logo.png"
-              width={253}
-              height={48}
+              srcSet={`
+                /assets/img/logo.png 0.5x,
+                /assets/img/logo.png 0.75x,
+                /assets/img/logo.png 1.5x,
+              `}
               layout="responsive"
             />
             <Button onClick={handleClick} type="hero">
@@ -67,10 +68,15 @@ export default function App() {
         </Column>
         <Column big padding="0 0 0 3vw">
           <View thermometer width="35vw">
-            <Image
+            <img
               src="/assets/img/termometro.png"
-              width={1080}
-              height={684}
+              srcSet={`
+                /assets/img/termometro.png 0.5x,
+                /assets/img/termometro.png 0.75x,
+                /assets/img/termometro.png 1.5x,
+                /assets/img/termometro.png 2x,
+                /assets/img/termometro.png 2.5x,
+              `}
               layout="responsive"
             />
           </View>
@@ -135,7 +141,7 @@ export default function App() {
       <View bg="#4d339d" padding="0 0 5vw 0">
         <Container>
           <Column full>
-            <View about width="46.5vw" margin="5vw auto">
+            <View about="true" width="46.5vw" margin="5vw auto">
               <Title
                 type="deep"
                 color="optimization"
