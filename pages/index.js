@@ -19,6 +19,18 @@ export default function App() {
   };
   return (
     <>
+      <Head>
+        <title>Termômetro de Employer Branding | by Matchbox</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta
+          name="description"
+          content="Tenha um diagnóstico completo da sua marca empregadora com o Termômetro de Employer Branding da Matchbox"
+        />
+        <link
+          rel="canonical"
+          href="https://termometroemployerbranding.com.br/"
+        />
+      </Head>
       <Waves yellow>
         <Container>
           <View width="13vw" height="2.5vw" padding="3.5vw 0 6.3vw 0">
