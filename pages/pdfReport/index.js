@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from 'react'
-import Image from "next/image";
 import gql from 'graphql-tag';
 import { ApolloClient, InMemoryCache } from '@apollo/client';
 
@@ -143,7 +142,7 @@ export default function Report() {
         </Column>
         <Column big padding="0 0 0 8vw">
           <View width="35vw" height="18.5vw">
-            <Image
+            <img
               src="/assets/img/termometro.png"
               srcSet={`
                   /assets/img/termometro.png 0.5x,
