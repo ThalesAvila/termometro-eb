@@ -38,9 +38,12 @@ export const DeepCard = styled.div`
 `;
 
 export const DeepImg = styled.div`
-  width: 8.5vw;
-  height: 8.5vw;
+  min-width: 8.5vw;
+  min-height: 8.5vw;
   margin-bottom: 2.6vw;
+  img {
+    margin: 0 auto;
+  }
 `;
 
 export const DeepTitle = styled.div`
