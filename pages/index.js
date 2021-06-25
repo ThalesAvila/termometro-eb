@@ -11,6 +11,7 @@ import {
 } from "@/components/index";
 import { EbData, DeepData } from "../data";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function App() {
   const router = useRouter();
