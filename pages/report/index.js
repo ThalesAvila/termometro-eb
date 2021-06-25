@@ -107,6 +107,7 @@ export default function Report() {
         <Column big padding="0 0 0 8vw">
           <View width="35vw" height="18.5vw">
             <img
+              width="100%"
               src={`/assets/img/${leadReport?.general?.stage}.png`}
               srcSet={`
                 /assets/img/${leadReport?.general?.stage}.png 0.5x,
