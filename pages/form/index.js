@@ -16,7 +16,7 @@ import {
   Button,
   DefaultSpan,
 } from "@/components/index";
-import Image from "next/image";
+import { HubspotFormData, questionData } from "../../data";
 import { useAppContext } from "@/components/AppContext";
 import parseLeadInfo from "utils/parseLeadInfo";
 
@@ -165,7 +165,7 @@ export default function Form() {
       <View formHeader bg="#483A96" height="12vw">
         <Container>
           <View headerImg width="15vw" height="2vw" padding="2vw 0 0 1.5vw">
-            <Image
+            <img
               src="/assets/img/logo-white.png"
               width={253}
               height={48}
