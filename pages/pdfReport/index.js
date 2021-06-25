@@ -1,3 +1,8 @@
+import { useState, useEffect, useMemo } from 'react'
+import Image from "next/image";
+import gql from 'graphql-tag';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+
 import {
   Graph,
   Title,
@@ -8,14 +13,107 @@ import {
   View,
   DataBox,
 } from "@/components/index";
-import Image from "next/image";
+import parseLeadInfo from 'utils/parseLeadInfo';
+import { calculateScore } from '../../utils';
+import { dynamicReport, dynamicReportResponses } from "../../data";
+import { endpoint } from 'config';
 
-// import { CollapsableData } from "../../data";
-
+const GET_LEAD_QUERY = gql`
+  query GET_LEAD_QUERY($id: ID!) {
+    Lead(where: { id: $id }) { 
+      company
+      role
+      companySize
+      companySegment
+      talentProfile
+      hasCareersWebsite
+      updateCareersWebsite
+      hasEmployeeValueProposition
+      hasGlassdoor
+      hasLinkedIn
+      hasInstagram
+      hasMedium
+      weeklyPost
+      hasReferralProgram
+      employeesPostAbout
+      employeesEngaged
+      hasOnlineEvents
+      greatImpactEvents
+      partnershipEntity
+      hasTalentPipeline
+      hasInboundMarket
+      diversityInitiatives
+      hasRecruitmentPrograms
+      hasAts
+      jobBoards
+      hasRmEmployee
+      proveImpact
+      hasRmBudget
+      taBudget
+      returnOnInvestment
+    }
+  }
+`;
+  
 export default function Report() {
+  const [leadReport, setLeadReport] = useState(undefined)
+
+  const employerBrandResponses = useMemo(() => {
+    return dynamicReportResponses?.employerBrand.map((response, i) => {
+      if(leadReport?.employerBrand?.responses[i]) {
+        response.isPositive = true;
+      } else {
+        response.isPositive = false;
+      }
+      return response;
+    })
+  });
+
+  const internalExternalEngagementResponses = useMemo(() => {
+    return dynamicReportResponses?.internalExternalEngagement.map((response, i) => {
+      if(leadReport?.internalExternalEngagement?.responses[i]) {
+        response.isPositive = true;
+      } else {
+        response.isPositive = false;
+      }
+      return response;
+    })
+  });
+
+  const talentJourneyResponses = useMemo(() => {
+    return dynamicReportResponses?.talentJourney.map((response, i) => {
+      if(leadReport?.talentJourney?.responses[i]) {
+        response.isPositive = true;
+      } else {
+        response.isPositive = false;
+      }
+      return response;
+    })
+  });
+
+  const structureMetricsResponses = useMemo(() => {
+    return dynamicReportResponses?.structureMetrics.map((response, i) => {
+      if(leadReport?.structureMetrics?.responses[i]) {
+        response.isPositive = true;
+      } else {
+        response.isPositive = false;
+      }
+      return response;
+    })
+  });
+
+  useEffect(() => {
+    setLeadReport(calculateScore(props.data));
+  }, [props.data]);
+
   return (
     <>
-      <Waves salmon>
+      <Waves 
+        small
+        salmon={leadReport?.general?.stage === 'survival'}
+        yellow={leadReport?.general?.stage === 'optimization'}
+        green={leadReport?.general?.stage === 'prosperity'}
+      >
         <Container type="report">
           <View width="41vw" padding="9vw 0 0 0">
             <Title
@@ -32,13 +130,13 @@ export default function Report() {
         <Column small padding="0 3vw 0 0">
           <View>
             <Title
-              color="salmon"
+              color={leadReport?.general?.stage}
               type="report-title"
-              title1="Você está no modo de sobrevivência"
+              title1={dynamicReport[0][leadReport?.general?.stage]}
             />
             <View reportSubText width="24vw">
               <Paragraph highlight>
-                Sua trajetória com <b>Employer Branding</b> está só começando!"
+              {dynamicReport[1][leadReport?.general?.stage]}
               </Paragraph>
             </View>
           </View>
@@ -47,8 +145,13 @@ export default function Report() {
           <View width="35vw" height="18.5vw">
             <Image
               src="/assets/img/termometro.png"
-              width={1080}
-              height={684}
+              srcSet={`
+                  /assets/img/termometro.png 0.5x,
+                  /assets/img/termometro.png 0.75x,
+                  /assets/img/termometro.png 1.5x,
+                  /assets/img/termometro.png 2x,
+                  /assets/img/termometro.png 2.5x,
+                `}
               layout="responsive"
             />
           </View>
@@ -56,69 +159,90 @@ export default function Report() {
         <Column full>
           <View reportText width="60vw" margin="8vw 0" cookie>
             <Paragraph>
-              Baseado n as suas respostas, as suas estratégias e ações de
-              Employer Branding ainda estão no modo sobrevivência. O trabalho de
-              marca empregadoda ainda esta começando em muitas empresas, entao
-              veja isso como uma oportunidade para desenvolver sua estratéfia!
-              Dê uma olhada nos resultados abaixo e entenda em que você pode
-              direcionar seus esforços.
+              {dynamicReport[2][leadReport?.general?.stage]}
             </Paragraph>
           </View>
         </Column>
         <Column full>
-          <View flex around width="100%" margin="4vw 0 0 0">
+          <View flex around width="100%" margin="4vw 0 6vw 0">
             <Graph
-              value="90"
+              value={leadReport?.employerBrand?.value}
               color="purple"
               title="presença da marca empregadora"
             />
             <Graph
-              value="80"
-              color="salmon"
+              value={leadReport?.internalExternalEngagement?.value}
+              color="survival"
               title="engajamento interno e externo"
             />
-            <Graph value="50" color="yellow" title="jornada do Talento" />
             <Graph
-              value="40"
-              color="green"
+              value={leadReport?.talentJourney?.value} 
+              color="yellow" 
+              title="jornada do Talento" />
+            <Graph
+              value={leadReport?.structureMetrics?.value}
+              color="prosperity"
               title="estrutura do time e métricas"
             />
           </View>
         </Column>
-        {/* <DataBox
-          collapsableData={CollapsableData}
-          pdf
-          title1="presença da marca empregadora "
+        <DataBox
+          collapsableData={employerBrandResponses}
+          title1="Presença da marca empregadora"
           title2=""
-          graphValue="50"
+          graphValue={leadReport?.employerBrand?.value}
           color="purple"
-          paragraph="Baseado nas suas respostas, as suas estratégias e ações de Employer Branding ainda estão no modo sobrevivência. O trabalho de marca empregadoda ainda esta começando em muitas empresas, entao veja isso como uma oportunidade para desenvolver sua estratéfia! Dê uma olhada nos resultados abaixo e entenda em que você pode direcionar seus esforços. "
+          paragraph={dynamicReport[3][leadReport?.general?.stage]}
         />
+        <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
-          pdf
-          collapsableData={CollapsableData}
-          title1="engajamento interno e externo "
-          graphValue="50"
-          color="salmon"
-          paragraph="Baseado nas suas respostas, as suas estratégias e ações de Employer Branding ainda estão no modo sobrevivência. O trabalho de marca empregadoda ainda esta começando em muitas empresas, entao veja isso como uma oportunidade para desenvolver sua estratéfia! Dê uma olhada nos resultados abaixo e entenda em que você pode direcionar seus esforços. "
+          collapsableData={internalExternalEngagementResponses}
+          title1="Engajamento interno e externo "
+          graphValue={leadReport?.internalExternalEngagement?.value}
+          color="survival"
+          paragraph={dynamicReport[4][leadReport?.general?.stage]}
         />
+        <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
-          pdf
-          collapsableData={CollapsableData}
-          title1="jornada do talento "
-          graphValue="50"
-          color="yellow"
-          paragraph="Baseado nas suas respostas, as suas estratégias e ações de Employer Branding ainda estão no modo sobrevivência. O trabalho de marca empregadoda ainda esta começando em muitas empresas, entao veja isso como uma oportunidade para desenvolver sua estratéfia! Dê uma olhada nos resultados abaixo e entenda em que você pode direcionar seus esforços. "
+          collapsableData={talentJourneyResponses}
+          title1="Jornada do talento "ywnrds
+          graphValue={leadReport?.talentJourney?.value} 
+          color="optimization"
+          paragraph={dynamicReport[5][leadReport?.general?.stage]}
         />
+        <View flex around width="100%" margin="6vw 0 0 0" />
         <DataBox
-          pdf
-          collapsableData={CollapsableData}
-          title1="estrutura do time de métrica"
-          graphValue="50"
-          color="green"
-          paragraph="Baseado nas suas respostas, as suas estratégias e ações de Employer Branding ainda estão no modo sobrevivência. O trabalho de marca empregadoda ainda esta começando em muitas empresas, entao veja isso como uma oportunidade para desenvolver sua estratéfia! Dê uma olhada nos resultados abaixo e entenda em que você pode direcionar seus esforços. "
-        /> */}
+          collapsableData={structureMetricsResponses}
+          title1="Estrutura do time de métrica"
+          graphValue={leadReport?.structureMetrics?.value} 
+          color="prosperity"
+          paragraph={dynamicReport[6][leadReport?.general?.stage]}
+        />
       </Container>
     </>
   );
+}
+
+export async function getServerSideProps({ query }) {
+  const { id } = query
+
+  const client = new ApolloClient({
+    uri: endpoint,
+    cache: new InMemoryCache()
+  });
+
+  const { data } = await client.query({
+    query: GET_LEAD_QUERY,
+    variables: {
+      id
+    }
+  })
+
+  const parsedLeadInfo = parseLeadInfo(data.Lead, true)
+
+  return {
+    props: {
+      data: parsedLeadInfo
+    }
+  }
 }
