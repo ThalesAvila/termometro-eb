@@ -29,7 +29,7 @@ const pdf = async function (req, res) {
     headless: true,
     ignoreHTTPSErrors: true,
   });
-
+  
   const webPage = await browser.newPage();
 
   const url = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/pdfReport?id=${id}`
