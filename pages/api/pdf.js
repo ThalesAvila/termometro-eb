@@ -1,4 +1,4 @@
-import puppeteer from 'puppeteer'
+import chromium from 'chrome-aws-lambda';
 
 const allowCors = fn => async (req, res) => {
   res.setHeader('Access-Control-Allow-Credentials', true)
@@ -21,7 +21,14 @@ const allowCors = fn => async (req, res) => {
 const pdf = async function (req, res) {
   const { id } = req.query
 
-  const browser = await puppeteer.launch({ headless: true, args: ['—no-sandbox', '—disable-setuid-sandbox'] });
+  // const browser = await puppeteer.launch({ headless: true, args: ['—no-sandbox', '—disable-setuid-sandbox'] });
+  const browser = await chromium.puppeteer.launch({
+    args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
+    headless: true,
+    ignoreHTTPSErrors: true,
+  });
 
   const webPage = await browser.newPage();
 
