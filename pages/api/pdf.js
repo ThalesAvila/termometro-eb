@@ -25,7 +25,7 @@ const pdf = async function (req, res) {
 
   const webPage = await browser.newPage();
 
-  const url = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/pdfReport?id=${id}`
+  const url = `${process.env.NEXT_PUBLIC_FRONTEND_URL}pdfReport?id=${id}`
 
   await webPage.goto(url);
 
